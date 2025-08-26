@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <title>Ouissal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+
+<style>
+    /* === Base === */
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #fff, rgb(254, 215, 173));
+        color: #333;
+    }
+
+    /* === Navbar === */
+    nav {
+        width: 100%;
+        height: 10vh;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 50px;
+    }
+
+    .main-container {
+        display: flex;
+        align-items: center;
+        /* centre verticalement avec le texte */
+        justify-content: center;
+        /* garde tout centré */
+        gap: 120px;
+        /* gros espace entre texte et image */
+        margin: 100px auto;
+        max-width: 1400px;
+        /* plus large */
+        padding: 0 80px;
+    }
+
+    /* Image beaucoup plus grande et ronde */
+    .main-container .image img {
+        width: 400px;
+        /* encore plus grand */
+        height: 400px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid #6d4300;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    /* Effet hover */
+    .main-container .image img:hover {
+        transform: scale(1.12) rotate(3deg);
+        box-shadow: 0 25px 55px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .logo span {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #6d4300;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    .links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .links a {
+        text-decoration: none;
+        font-weight: 500;
+        color: #333;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s;
+    }
+
+    .links a:hover {
+        background: #6d4300;
+        color: white;
+    }
+
+    /* === Section Compétence === */
+    section#competence4 {
+        max-width: 1000px;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    section#competence4 h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #6d4300;
+        text-transform: uppercase;
+    }
+
+    /* === Swiper / Cards === */
+    .swiper {
+        width: 100%;
+        padding-bottom: 80px;
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .image-container,
+    figure.img-slot {
+        margin-bottom: 20px;
+    }
+
+    .image-container img,
+    figure.img-slot img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        animation: float 3s ease-in-out infinite;
+        border-radius: 15px;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .card h3 {
+        color: #6d4300;
+        margin-bottom: 15px;
+    }
+
+    .card ul {
+        list-style: none;
+        padding: 0;
+        margin: 15px 0;
+    }
+
+    .card li {
+        margin: 8px 0;
+        font-size: 1rem;
+    }
+
+    .card li strong {
+        color: #6d4300;
+    }
+
+    .description {
+        margin-top: 20px;
+        font-size: 0.95rem;
+        color: #444;
+        line-height: 1.6;
+    }
+
+    /* === Footer === */
+    footer {
+        text-align: center;
+        padding: 25px;
+        background-color: #eee;
+        margin-top: 60px;
+        font-size: 0.9rem;
+        color: #555;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+            <span>Portfolio</span>
+        </div>
+        <div class="links">
+            <a href="index.html">Accueil</a>
+            <a href="alternance.html">Alternance</a>
+            <a href="competence4.html">Compétence 4</a>
+            <a href="competence5.html">Compétence 5</a>
+            <a href="competence6.html">Compétence 6</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+    <section>
+        <div class="main-container">
+            <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
+                <img src="main.png" alt="">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Bonjour, je suis <span>Ouissal
+                        JARRARI</span></h1>
+                <div class="typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">Je suis
+                    <span></span>
+                </div>
+                <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
+                    Je suis en 3ᵉ année de BUT Informatique, parcours Administration, Gestion et Exploitation des
+                    Données. Ce site web est mon portfolio et présente mes trois compétences principales en 3ᵉ année.
+                </p>
+                <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+
+                    <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
+                        <a href="PPP.pdf" download>
+                            <button>Télécharger le CV</button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+    </script>
+    <script>
+        function hamburg() {
+            const navbar = document.querySelector(".dropdown")
+            navbar.style.transform = "translateY(0px)"
+        }
+        function cancel() {
+            const navbar = document.querySelector(".dropdown")
+            navbar.style.transform = "translateY(-500px)"
+        }
+    </script>
+</body>
+
+</html>

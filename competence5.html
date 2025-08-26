@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétence 5 - Timeline & Ressources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* === Base === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, #fff, rgb(254, 215, 173));
+            color: #333;
+        }
+
+        /* === Navbar === */
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+
+        .logo span {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6d4300;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .links a:hover {
+            background: #6d4300;
+            color: white;
+        }
+
+        /* === Section Compétence 5 - Timeline === */
+        section#competence5 {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        section#competence5 h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #6d4300;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #6d4300;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 30px 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            transition: all 0.4s;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #6d4300;
+            border-radius: 50%;
+            top: 30px;
+            right: -10px;
+            border: 4px solid white;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 15px;
+            color: #6d4300;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .timeline-item li {
+            margin: 8px 0;
+        }
+
+        .timeline-item li strong {
+            color: #6d4300;
+        }
+
+        /* Images timeline */
+        .timeline-item .timeline-img {
+            position: absolute;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid white;
+            background-color: #6d4300;
+            transition: transform 0.3s;
+        }
+
+        .timeline-item.left .timeline-img {
+            left: -90px;
+        }
+
+        .timeline-item.right .timeline-img {
+            right: -90px;
+        }
+
+        .timeline-item .timeline-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .timeline-item .timeline-img:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        @media(max-width:768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 20px;
+                margin: 20px 0;
+            }
+
+            .timeline-item.right {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 10px;
+            }
+
+            .timeline-item.left .timeline-img,
+            .timeline-item.right .timeline-img {
+                left: -90px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #eee;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Overlay Cards + Buttons */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .btnShow,
+        .btnShowAll,
+        .btnShowRessources,
+        .btnShowAC,
+        .btnShowCE {
+            background: #6d4300;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btnShow:hover,
+        .btnShowAll:hover,
+        .btnShowRessources:hover,
+        .btnShowAC:hover,
+        .btnShowCE:hover {
+            background: #9b5d1c;
+        }
+
+        .overlay,
+        .overlayAll,
+        .overlayRessources,
+        .overlayAC,
+        .overlayCE {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+        .overlay-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .closeOverlay,
+        .closeOverlayAll,
+        .closeOverlayRessources,
+        .closeOverlayAC,
+        .closeOverlayCE {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+            color: #6d4300;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo" data-aos="zoom-in" data-aos-duration="1000"><span>Portfolio</span></div>
+        <div class="links">
+            <a href="index.html">Accueil</a>
+            <a href="alternance.html">Alternance</a>
+            <a href="competence4.html">Compétence 4</a>
+            <a href="competence5.html">Compétence 5</a>
+            <a href="competence6.html">Compétence 6</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Section Compétence 5 -->
+    <section id="competence5">
+        <h2 data-aos="fade-down" data-aos-duration="1000">Compétence 5 : Conduire un projet</h2>
+        <ul class="timeline">
+            <li class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-img"><img src="coding.jpg"></div>
+                <h3><i class="fa-solid fa-magnifying-glass"></i> Identifier les besoins</h3>
+                <ul>
+                    <li><strong>UE1.5</strong> Identifier les besoins métiers</li>
+                    <li><strong>UE2.5</strong> Identifier besoins utilisateurs</li>
+                </ul>
+            </li>
+            <li class="timeline-item right" data-aos="fade-left">
+                <div class="timeline-img"><img src="projet.jpeg"></div>
+                <h3><i class="fa-solid fa-diagram-project"></i> Suivi de projet</h3>
+                <ul>
+                    <li><strong>UE3.5</strong> Appliquer suivi</li>
+                    <li><strong>UE4.5</strong> Adapter suivi</li>
+                </ul>
+            </li>
+            <li class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-img"><img src="mise.png"></div>
+                <h3><i class="fa-solid fa-cogs"></i> Conception & mise en œuvre</h3>
+                <ul>
+                    <li><strong>UE5.5</strong> Conception projet</li>
+                    <li><strong>UE6.5</strong> Mise en œuvre</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Boutons pour pop-ups séparés -->
+    <div style="text-align:center; margin:30px;">
+        <button class="btnShowRessources">📘 Ressources</button>
+        <button class="btnShowAC">🎯 AC</button>
+        <button class="btnShowCE">⚡ CE</button>
+    </div>
+
+    <!-- Overlay Ressources -->
+    <div class="overlayRessources">
+        <div class="overlay-content">
+            <span class="closeOverlayRessources">&times;</span>
+            <h3 style="color:#6d4300;">Ressources des UEs</h3>
+            <ul>
+                <li><strong>UE1.5</strong> - PPP – 0 0 0, Web BD – Coeff 4</li>
+                <li><strong>UE2.5</strong> - Nouvelles BD – Coeff 12, Optimisation données – Coeff 26</li>
+                <li><strong>UE3.5</strong> - Anglais – Coeff 8</li>
+                <li><strong>UE4.5</strong> - Administration BD – Coeff 7</li>
+                <li><strong>UE5.5</strong> - Aide à la décision – Coeff 33</li>
+                <li><strong>UE6.5</strong> - Organisation & protection – Coeff 10, Stage – Coeff 45</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Overlay AC -->
+    <div class="overlayAC">
+        <div class="overlay-content">
+            <span class="closeOverlayAC">&times;</span>
+            <h3 style="color:#6d4300;">Apprentissages Critiques (AC)</h3>
+            <ul>
+                <li>AC 1 – Mesurer les impacts économiques, sociétaux et technologiques</li>
+                <li>AC 2 – Intégrer un projet dans le SI</li>
+                <li>AC 3 – Adapter un SI</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Overlay CE -->
+    <div class="overlayCE">
+        <div class="overlay-content">
+            <span class="closeOverlayCE">&times;</span>
+            <h3 style="color:#6d4300;">Composantes Essentielles (CE)</h3>
+            <ul>
+                <li>CE 1 – Communiquer efficacement</li>
+                <li>CE 2 – Respecter règles juridiques</li>
+                <li>CE 3 – Gestion éthique et durable</li>
+                <li>CE 4 – Démarche proactive et critique</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <p>© 2025 Ouissal JARRARI - Portfolio</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+
+        // Overlay Ressources
+        document.querySelector('.btnShowRessources').addEventListener('click', () => document.querySelector('.overlayRessources').style.display = 'flex');
+        document.querySelector('.closeOverlayRessources').addEventListener('click', () => document.querySelector('.overlayRessources').style.display = 'none');
+
+        // Overlay AC
+        document.querySelector('.btnShowAC').addEventListener('click', () => document.querySelector('.overlayAC').style.display = 'flex');
+        document.querySelector('.closeOverlayAC').addEventListener('click', () => document.querySelector('.overlayAC').style.display = 'none');
+
+        // Overlay CE
+        document.querySelector('.btnShowCE').addEventListener('click', () => document.querySelector('.overlayCE').style.display = 'flex');
+        document.querySelector('.closeOverlayCE').addEventListener('click', () => document.querySelector('.overlayCE').style.display = 'none');
+
+        // Overlay global
+        const btnAll = document.querySelector('.btnShowAll'); const overlayAll = document.querySelector('.overlayAll'); const closeAll = document.querySelector('.closeOverlayAll');
+        btnAll.addEventListener('click', () => overlayAll.style.display = 'flex');
+        closeAll.addEventListener('click', () => overlayAll.style.display = 'none');
+    </script>
+</body>
+
+</html>

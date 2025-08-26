@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Ouissal Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* === Base === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, #fff, #fed7ad);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* === Fond animé léger === */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, #fff5e6, transparent 70%),
+                radial-gradient(circle at 80% 70%, #ffe5b4, transparent 70%);
+            z-index: -1;
+            animation: floatBG 15s infinite alternate;
+        }
+
+        @keyframes floatBG {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-20px, -20px);
+            }
+        }
+
+        /* === Navbar === */
+        nav {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo span {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6d4300;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .links a:hover {
+            background: #6d4300;
+            color: white;
+        }
+
+        .hamburg {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-500px);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown .links {
+            flex-direction: column;
+            padding: 20px;
+            gap: 10px;
+        }
+
+        .cancel {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        @media(max-width:768px) {
+            .links {
+                display: none;
+            }
+
+            .hamburg {
+                display: block;
+            }
+        }
+
+        /* === Contact container modernisé === */
+        .contact-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 2px solid #6d4300;
+            border-radius: 20px;
+            padding: 50px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(109, 67, 0, 0.3);
+            margin: 80px auto;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .contact-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(109, 67, 0, 0.4);
+        }
+
+        .contact-container h1 {
+            color: #6d4300;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .contact-container p {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .contact-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-container input,
+        .contact-container textarea {
+            padding: 12px;
+            border: 1px solid #6d4300;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container input:focus,
+        .contact-container textarea:focus {
+            border-color: #6d4300;
+            box-shadow: 0 0 15px rgba(109, 67, 0, 0.3);
+        }
+
+        .contact-container button {
+            padding: 14px;
+            background: #6d4300;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+        }
+
+        .contact-container button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .contact-container button:hover::before {
+            left: 0;
+        }
+
+        .contact-container button:hover {
+            background: #fff;
+            color: #6d4300;
+            border: 2px solid #6d4300;
+            box-shadow: 0 0 20px rgba(109, 67, 0, 0.5);
+        }
+
+        /* icônes de contact */
+        .contact-icons a {
+            transition: 0.3s;
+        }
+
+        .contact-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 500px) {
+            .contact-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= NAVBAR ======= -->
+    <nav>
+        <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+            <span>Portfolio</span>
+        </div>
+        <div class="links">
+            <a href="index.html">Accueil</a>
+            <a href="alternance.html">Alternance</a>
+            <a href="competence4.html">Compétence 4</a>
+            <a href="competence5.html">Compétence 5</a>
+            <a href="competence6.html">Compétence 6</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Accueil</a>
+                <a href="alternance.html">Alternance</a>
+                <a href="competence4.html">Compétence 4</a>
+                <a href="competence5.html">Compétence 5</a>
+                <a href="competence6.html">Compétence 6</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======= CONTACT modernisé ======= -->
+    <div class="contact-container" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out">
+        <h1>Contactez-moi</h1>
+        <p>Remplissez le formulaire ci-dessous pour me contacter ou utilisez les liens rapides.</p>
+        <div class="contact-icons" style="margin-bottom: 25px; display:flex; justify-content:center; gap:20px;">
+            <a href="mailto:ouissal@example.com" style="color:#6d4300; font-size:1.5rem;"><i
+                    class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+33000000000" style="color:#6d4300; font-size:1.5rem;"><i class="fa-solid fa-phone"></i></a>
+            <a href="https://www.linkedin.com/in/ouissal-jarrari" target="_blank"
+                style="color:#6d4300; font-size:1.5rem;"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <form>
+            <input type="text" name="name" placeholder="Votre nom" required>
+            <input type="email" name="email" placeholder="Votre email" required>
+            <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+
+        function hamburg() {
+            document.querySelector(".dropdown").style.transform = "translateY(0px)";
+        }
+
+        function cancel() {
+            document.querySelector(".dropdown").style.transform = "translateY(-500px)";
+        }
+    </script>
+
+</body>
+
+</html>

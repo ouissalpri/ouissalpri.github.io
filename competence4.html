@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétence 4 - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* === Base === */
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #fff, rgb(254, 215, 173));
+            color: #333;
+        }
+
+        /* === Navbar === */
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+
+        .logo span {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6d4300;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .links a:hover {
+            background: #6d4300;
+            color: white;
+        }
+
+        /* === Section Compétence === */
+        section#competence4 {
+            max-width: 1000px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        section#competence4 h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #6d4300;
+            text-transform: uppercase;
+        }
+
+        /* === Swiper / Cards === */
+        .swiper {
+            width: 100%;
+            padding-bottom: 80px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .image-container,
+        figure.img-slot {
+            margin-bottom: 20px;
+        }
+
+        .image-container img,
+        figure.img-slot img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .card h3 {
+            color: #6d4300;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .card li {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        .card li strong {
+            color: #6d4300;
+        }
+
+        .description {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* === Footer === */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #eee;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* === TITRE FENETRES === */
+        #ressources-detaillees h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff6a00, #ffd600, #ff6a00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            animation: bounceGlow 2s infinite;
+        }
+
+        @keyframes bounceGlow {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            }
+
+            50% {
+                transform: translateY(-8px);
+                text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+            }
+        }
+
+        /* === FENETRES RESSOURCES === */
+        .mySwiperRessourcesDetaillees .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            transition: transform 0.5s, box-shadow 0.5s, background 0.5s;
+            border-left: 8px solid #ff6a00;
+        }
+
+        .mySwiperRessourcesDetaillees .card:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Couleurs par type */
+        .card.s5 {
+            border-left-color: #ff6a00;
+        }
+
+        .card.s6 {
+            border-left-color: #007bff;
+        }
+
+        .card.sae {
+            border-left-color: #28a745;
+        }
+
+        .card.ac {
+            border-left-color: #6f42c1;
+        }
+
+        .card.ce {
+            border-left-color: #dc3545;
+        }
+
+        .card h3 i {
+            margin-right: 10px;
+            color: #6d4300;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+            <span>Portfolio</span>
+        </div>
+        <div class="links">
+            <a href="index.html">Accueil</a>
+            <a href="alternance.html">Alternance</a>
+            <a href="competence4.html">Compétence 4</a>
+            <a href="competence5.html">Compétence 5</a>
+            <a href="competence6.html">Compétence 6</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Section Compétence 4 -->
+    <section id="competence4">
+        <h2 data-aos="fade-down" data-aos-duration="1000">Compétence 4 : Gérer des données de l’information</h2>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+
+                <!-- CARD 1 -->
+                <div class="swiper-slide">
+                    <article class="card" data-tilt data-aos="fade-right" data-aos-duration="1000">
+                        <figure class="img-slot" aria-label="Image de conception BD">
+                            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop"
+                                alt="Conception base de données" />
+                        </figure>
+                        <h3><i class="fa-solid fa-database"></i> Concevoir et mettre en place une base de données</h3>
+                        <p>À partir d'un cahier des charges client :</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong>UE1.4</strong><span class="badge">Mise
+                                    en place initiale</span></li>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong>UE2.4</strong><span
+                                    class="badge">Développement complet</span></li>
+                        </ul>
+                    </article>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="swiper-slide">
+                    <article class="card" data-tilt data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+                        <figure class="img-slot" aria-label="Image optimisation et sécurité BD">
+                            <img src="image.jpeg" alt="Optimisation et sécurité" />
+                        </figure>
+                        <h3><i class="fa-solid fa-shield-halved"></i> Optimiser et sécuriser une base de données</h3>
+                        <p>Interagir avec une application et mettre en œuvre la sécurité :</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong>UE3.4</strong><span
+                                    class="badge">Optimisation</span></li>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong>UE4.4</strong><span
+                                    class="badge">Sécurité & interaction</span></li>
+                        </ul>
+                    </article>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="swiper-slide">
+                    <article class="card" data-tilt data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                        <figure class="img-slot" aria-label="Image administration et décisionnel">
+                            <img src="code.jpg" alt="Administration et décisionnel" />
+                        </figure>
+                        <h3><i class="fa-solid fa-server"></i> Administration et systèmes décisionnels</h3>
+                        <p>Administrer une base de données et réaliser des systèmes d'informations décisionnels :</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong>UE5.4</strong><span
+                                    class="badge">Administration</span></li>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong>UE6.4</strong><span
+                                    class="badge">Systèmes décisionnels</span></li>
+                        </ul>
+                    </article>
+                </div>
+
+            </div>
+
+            <!-- Pagination & Navigation -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+
+    <div class="swiper mySwiperRessourcesDetaillees" style="padding-bottom: 100px;">
+        <div class="swiper-wrapper">
+
+            <!-- CARD Ressources S5 -->
+            <div class="swiper-slide">
+                <article class="card s5" data-aos="flip-left" data-aos-duration="1200">
+                    <h3><i class="fa-solid fa-database"></i> Ressources S5 Coeff (50)</h3>
+                    <ul>
+                        <li>R5.C.02 PPP – 0 0 0 0</li>
+                        <li>R5.C.04 Web BD – Coeff 4</li>
+                        <li>R5.C.05 Nouvelles BD – Coeff 9</li>
+                        <li>R5.C.06 Exploitation BD – Coeff 7</li>
+                        <li>R5.C.07 Données massives – Coeff 6</li>
+                        <li>R5.C.08 Techniques d'IA – Coeff 13</li>
+                        <li>R5.C.09 Statistique inférentielle – Coeff 7</li>
+                        <li>R5.C.11 Optimisation données SI – Coeff 2</li>
+                        <li>R5.C.12 Anglais – Coeff 2</li>
+                    </ul>
+                    <h4>SAÉ S5 (50h)</h4>
+                    <ul>
+                        <li>S5.C.01 Datamining – Coeff 50</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- CARD Ressources S6 -->
+            <div class="swiper-slide">
+                <article class="card s6" data-aos="flip-right" data-aos-duration="1200">
+                    <h3><i class="fa-solid fa-database"></i> Ressources S6 Coeff (40)</h3>
+                    <ul>
+                        <li>R6.C.04 PPP – 0 0 0 0</li>
+                        <li>R6.C.05 Administration BD – Coeff 33</li>
+                        <li>R6.C.06 Aide à la décision – Coeff 7</li>
+                    </ul>
+                    <h4>SAÉ S6 (55h)</h4>
+                    <ul>
+                        <li>S6.C.01 Organisation & protection – Coeff 10</li>
+                        <li>S6.C.St Stage – Coeff 45</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- CARD AC -->
+            <div class="swiper-slide">
+                <article class="card ac" data-aos="zoom-in" data-aos-duration="1200">
+                    <h3><i class="fa-solid fa-lightbulb"></i> Apprentissages Critiques (AC)</h3>
+                    <ul>
+                        <li>AC 1 – Capturer et stocker des ensembles volumineux et complexes de données hétérogènes
+                        </li>
+                        <li>AC 2 – Préparer et extraire les données pour l'exploitation</li>
+                        <li>AC 3 – Appliquer des méthodes d'exploration et d'exploitation des données
+                            (apprentissage, informatique décisionnelle ou fouille de données)</li>
+                        <li>AC 4 – Mettre en production et optimiser le système de gestion de données de
+                            l'entreprise</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- CARD CE -->
+            <div class="swiper-slide">
+                <article class="card ce" data-aos="zoom-in-up" data-aos-duration="1200">
+                    <h3><i class="fa-solid fa-check-circle"></i> Composantes Essentielles (CE)</h3>
+                    <ul>
+                        <li>CE 1 – Respect des réglementations sur la vie privée et la protection des données</li>
+                        <li>CE 2 – Respect des enjeux économiques, sociétaux et écologiques liés au stockage de
+                            données</li>
+                        <li>CE 3 – S'appuyer sur des bases mathématiques</li>
+                        <li>CE 4 – Assurer la cohérence et la qualité</li>
+                    </ul>
+                </article>
+            </div>
+
+        </div>
+
+        <!-- Pagination & Navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Ouissal JARRARI - Portfolio</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+
+        var swiper = new Swiper(".mySwiper", {
+            effect: "slide",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 1,
+            spaceBetween: 40,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        var swiperRessourcesDetaillees = new Swiper(".mySwiperRessourcesDetaillees", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            spaceBetween: 40,
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+</body>
+
+</html>

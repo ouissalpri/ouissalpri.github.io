@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <title>Compétence 6 - Portfolio</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* === Base === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, #fff, rgb(254, 215, 173));
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* === Navbar === */
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+
+        .logo span {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #6d4300;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .links a:hover {
+            background: #6d4300;
+            color: white;
+        }
+
+        .hamburg {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-500px);
+            transition: transform 0.3s;
+        }
+
+        .dropdown .links {
+            flex-direction: column;
+            padding: 20px;
+            gap: 10px;
+        }
+
+        .cancel {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        @media(max-width:768px) {
+            .links {
+                display: none;
+            }
+
+            .hamburg {
+                display: block;
+            }
+        }
+
+        /* === Compétence 6 - Steps Design === */
+        section#competence6 {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        section#competence6 h2 {
+            text-align: center;
+            color: #6d4300;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .step {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: #6d4300;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            color: white;
+            font-size: 1.8em;
+            transition: transform 0.3s;
+        }
+
+        .step-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .step p {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        /* Classe UE en couleur */
+        .ue {
+            color: #6d4300;
+            font-weight: bold;
+        }
+
+        @media(max-width: 768px) {
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #eee;
+            margin-top: 60px;
+        }
+
+        /* === Extra Options (Boutons + Popups) === */
+        .extra-options {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .extra-options button {
+            padding: 12px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            background: #6d4300;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .extra-options button:hover {
+            background: #a16207;
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            width: 70%;
+            max-width: 700px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease;
+        }
+
+        .modal-content h3 {
+            color: #6d4300;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .modal-content ul {
+            padding-left: 20px;
+        }
+
+        .close {
+            float: right;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #555;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: red;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
+            <span>Portfolio</span>
+        </div>
+        <div class="links">
+            <a href="index.html">Accueil</a>
+            <a href="alternance.html">Alternance</a>
+            <a href="competence4.html">Compétence 4</a>
+            <a href="competence5.html">Compétence 5</a>
+            <a href="competence6.html">Compétence 6</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section id="competence6">
+        <h2 data-aos="fade-down" data-aos-duration="1000">
+            Compétence 6 : Collaborer au sein d’une équipe informatique
+        </h2>
+
+        <!-- Boutons vers Ressources / AC / CE -->
+        <div class="extra-options">
+            <button onclick="openModal('ressourcesModal')">📘 Ressources</button>
+            <button onclick="openModal('acModal')">🎯 AC</button>
+            <button onclick="openModal('ceModal')">⚡ CE</button>
+        </div>
+
+        <div class="steps-container">
+            <div class="step" data-aos="fade-up" data-aos-duration="1000">
+                <div class="step-icon"><i class="fa-solid fa-user-check"></i></div>
+                <h3>Identifier ses aptitudes</h3>
+                <p><span class="ue">UE1.6</span> - Identifier ses aptitudes</p>
+                <p><span class="ue">UE2.6</span> - Comprendre son rôle dans l’équipe</p>
+            </div>
+            <div class="step" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="step-icon"><i class="fa-solid fa-sitemap"></i></div>
+                <h3>Situer son rôle et ses missions</h3>
+                <p><span class="ue">UE3.6</span> - Définir son rôle</p>
+                <p><span class="ue">UE4.6</span> - Définir ses missions</p>
+            </div>
+            <div class="step" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="step-icon"><i class="fa-solid fa-people-roof"></i></div>
+                <h3>Manager une équipe informatique</h3>
+                <p><span class="ue">UE5.6</span> - Organisation et management</p>
+                <p><span class="ue">UE6.6</span> - Suivi et coordination</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fenêtre Ressources -->
+    <div id="ressourcesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ressourcesModal')">&times;</span>
+            <h3>Ressources & SAÉ</h3>
+            <p><b>Ressources S1 - Coeff 60</b></p>
+            <ul>
+                <li>R1.02 Dév. interfaces web - Coeff 5</li>
+                <li>R1.08 Intro Gestion orga - Coeff 11</li>
+                <li>R1.09 Intro Économie - Coeff 11</li>
+                <li>R1.10 Anglais - Coeff 11</li>
+                <li>R1.11 Bases de la communication - Coeff 11</li>
+                <li>R1.12 PPP - Coeff 11</li>
+            </ul>
+            <p><b>SAÉ S1 - Coeff 40</b></p>
+            <ul>
+                <li>S1.06 Environnement éco - Coeff 40</li>
+            </ul>
+            <p><b>Ressources S2 - Coeff 60</b></p>
+            <ul>
+                <li>R2.02 Dév. d’apps avec IHM - Coeff 4</li>
+                <li>R2.11 Droit - Coeff 17</li>
+                <li>R2.12 Anglais - Coeff 17</li>
+                <li>R2.13 Communication technique - Coeff 17</li>
+                <li>R2.14 PPP - Coeff 11</li>
+            </ul>
+            <p><b>SAÉ S2 - Coeff 38</b></p>
+            <ul>
+                <li>S2.06 Travail d'équipe - Coeff 38</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Fenêtre AC -->
+    <div id="acModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('acModal')">&times;</span>
+            <h3>Apprentissages Critiques</h3>
+            <ul>
+                <li><b>AC1</b> : Appréhender l'écosystème numérique</li>
+                <li><b>AC2</b> : Découvrir les aptitudes requises selon les secteurs informatiques</li>
+                <li><b>AC3</b> : Identifier les statuts, fonctions et rôles en équipe</li>
+                <li><b>AC4</b> : Développer les compétences interpersonnelles pour travailler en équipe</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Fenêtre CE -->
+    <div id="ceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ceModal')">&times;</span>
+            <h3>Composantes Essentielles</h3>
+            <ul>
+                <li><b>CE1</b> : Inscrire sa démarche au sein d'une équipe pluridisciplinaire</li>
+                <li><b>CE2</b> : Accompagner la mise en œuvre des évolutions informatiques</li>
+                <li><b>CE3</b> : Respecter les contraintes juridiques</li>
+                <li><b>CE4</b> : Développer une communication efficace et collaborative</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Ouissal JARRARI - Portfolio</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+
+        function hamburg() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(0px)";
+        }
+        function cancel() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(-500px)";
+        }
+
+        // Gestion des modals
+        function openModal(id) {
+            document.getElementById(id).style.display = "flex";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+        window.onclick = function (event) {
+            document.querySelectorAll(".modal").forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        };
+    </script>
+
+</body>
+
+</html>
